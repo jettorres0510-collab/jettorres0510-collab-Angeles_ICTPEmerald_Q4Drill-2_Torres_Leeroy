@@ -133,25 +133,30 @@
             }
 
             let heatIndex = temp + (0.33 * humidity) - 4;
-            heatIndex = heatIndex.toFixed(1);
+            heatIndex = parseFloat(heatIndex.toFixed(1));
 
             let status = "";
 
-            if (heatIndex <= 27) {
-                status = "Comfortable / Cool";
-            } else if (heatIndex >= 28 && heatIndex <= 32) {
-                status = "Warm";
-            } else if (heatIndex >= 33 && heatIndex <= 37) {
-                status = "Hot";
-            } else if (heatIndex >= 38 && heatIndex <= 41) {
-                status = "Very Hot / Caution";
-            } else {
-                status = "Extreme Heat / Danger";
+            switch (true) {
+                case (heatIndex <= 27):
+                    status = "Comfortable / Cool";
+                    break;
+                case (heatIndex >= 28 && heatIndex <= 32):
+                    status = "Warm";
+                    break;
+                case (heatIndex >= 33 && heatIndex <= 37):
+                    status = "Hot";
+                    break;
+                case (heatIndex >= 38 && heatIndex <= 41):
+                    status = "Very Hot / Caution";
+                    break;
+                case (heatIndex > 41):
+                    status = "Extreme Heat / Danger";
+                    break;
+                default:
+                    status = "Unknown Range";
             }
 
             alert("Heat Index: " + heatIndex + "°C\nStatus: " + status);
         }
     </script>
-
-</body>
-</html>
